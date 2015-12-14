@@ -167,6 +167,9 @@ DOMHandler.prototype = {
 	startDTD:function(name, publicId, systemId) {
 		var impl = this.document.implementation;
 	    if (impl && impl.createDocumentType) {
+	    	if (systemId && systemId === '>') {
+	    		systemId = '';
+	    	}
 	        var dt = impl.createDocumentType(name, publicId, systemId);
 	        this.locator && position(this.locator,dt)
 	        appendElement(this, dt);
